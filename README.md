@@ -63,6 +63,16 @@ You can disable "Developer Tools" by commenting `win.webContents.openDevTools();
 |`npm run electron:windows`| On a Windows OS, builds your application and creates an app consumable in windows 32/64 bit systems |
 |`npm run electron:mac`|  On a MAC OS, builds your application and generates a `.app` file of your application that can be run on Mac |
 
+**Your app is inside the release directory**
+
+*For linux you can do*
+
+```
+sudo chmod a+x your_app_name.AppImage
+./your_app_name.AppImage
+
+```
+
 **Your application is optimised. Only /dist folder and node dependencies are included in the executable.**
 
 ## You want to use a specific lib (like rxjs) in electron main thread ?
