@@ -1,0 +1,5 @@
+export const Social = {
+    FACEBOOK_ID :'YOUR_FACEBOOK_ID',
+    GOOGLE_APP_ID:'YOUR_GOOGLE_APP_ID',
+    LINKEDIN_APP_ID:'YOUR_LINKEDIN_ID',
+};
