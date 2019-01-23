@@ -1,7 +1,28 @@
 {
   "PAGES": {
-      "HOME": {
-          "TITLE": "TONGASOA!"
-      }
+    "HOME": {
+      "TITLE": "WELCOME !",
+      "USER": "WELCOME ",
+      "REPOSITORY": "Create repository",
+      "FILE": "Create file",
+      "CREATE": "Create",
+      "REMOVE": "Remove",
+      "RMDIR": "Remove directory",
+      "BACK": "HOME",
+      "PATH": "Enter path and name",
+      "START_APP": "Start application"
+    },
+    "COMMAND": {
+      "SYSTEM": "System command",
+      "SHUTDOWN": "Shutdown",
+      "REBOOT": "Reboot",
+      "LOGOUT": "Logout"
+    },
+    "APPS": {
+      "APACHE": "Apache",
+      "CHROME": "Chrome",
+      "STORM": "Phpstorm",
+      "ALL": "Start All"
+    }
   }
 }

@@ -4,6 +4,7 @@ import * as shell from "shelljs"
 import * as exec from 'shelljs.exec'
 import {NgForm} from "@angular/forms";
 import {Commande} from "../../utils/Commande";
+import {LocalStorageService} from "../../providers/localStorage.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -15,15 +16,22 @@ export class DashboardComponent implements OnInit {
   file:any;
   removeFile:any;
   dossier:any;
+  name:any;
 
-  constructor(private router:Router) { }
+  constructor(private router:Router,
+              private localStorage:LocalStorageService) { }
 
   ngOnInit() {
-
+    document.body.style.overflow = "visible";
+    this.name = this.localStorage.getLocalstorage('nom');
   }
 
   home() {
     this.router.navigate(['']);
+  }
+
+  logout(){
+    exec('logout');
   }
 
   /**
@@ -71,6 +79,14 @@ export class DashboardComponent implements OnInit {
     //   window.alert("an error occured");
     // }
     // return jul_commad_return;
+  }
+
+  systReboot(){
+    exec(Commande.mamelona_indray, {silent:true});
+  }
+
+  systShutdown(){
+    exec(Commande.mamono,{silent:true});
   }
 
   startAll(){
