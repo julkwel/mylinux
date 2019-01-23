@@ -10,7 +10,10 @@
       "RMDIR": "Remove directory",
       "BACK": "HOME",
       "PATH": "Enter path and name",
-      "START_APP": "Start application"
+      "START_APP": "Start application",
+      "ANGULAR": "Angular",
+      "REACT": "React",
+      "E_A": "Angular Electron"
     },
     "COMMAND": {
       "SYSTEM": "System command",
@@ -22,7 +25,8 @@
       "APACHE": "Apache",
       "CHROME": "Chrome",
       "STORM": "Phpstorm",
-      "ALL": "Start All"
+      "ALL": "Start All",
+      "NEW_APPLICATION": "Create new application"
     }
   }
 }

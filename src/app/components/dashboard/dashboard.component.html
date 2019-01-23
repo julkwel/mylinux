@@ -1,64 +1,112 @@
 <!-- As a link -->
 <mdb-navbar SideClass="navbar navbar-dark indigo">
-  <mdb-navbar-brand class="text-center w-100">
-    <a mdbBtn (click)="home()" class="text-left ml-0 white-text" gradient="purple" rounded="true" mdbWavesEffect>{{ 'PAGES.HOME.BACK' | translate }}</a>
-    <a class="navbar-brand text-center" href="#">{{ 'PAGES.HOME.USER' | translate }} {{name}}</a>
-    <a mdbBtn (click)="logout()" class="text-right mr-0 white-text"  gradient="peach" rounded="true" mdbWavesEffect>{{ 'PAGES.COMMAND.LOGOUT' | translate }}</a>
-  </mdb-navbar-brand>
+    <mdb-navbar-brand class="text-center w-100">
+        <a mdbBtn (click)="home()" class="text-left ml-0 white-text" gradient="purple" rounded="true"
+           mdbWavesEffect>{{ 'PAGES.HOME.BACK' | translate }}</a>
+        <a class="navbar-brand text-center" href="#">{{ 'PAGES.HOME.USER' | translate }} {{name}}</a>
+        <a mdbBtn (click)="logout()" class="text-right mr-0 white-text" gradient="peach" rounded="true"
+           mdbWavesEffect>{{ 'PAGES.COMMAND.LOGOUT' | translate }}</a>
+    </mdb-navbar-brand>
 </mdb-navbar>
 
 <div class="container-fluid mt-5">
-  <div class="row">
-    <div class="col-md-6">
-      <h2 class="text-center"><strong>{{ 'PAGES.HOME.REPOSITORY' | translate }}</strong> </h2>
-      <form #doss="ngForm">
-        <mat-form-field class="w-100">
-          <input matInput placeholder="{{ 'PAGES.HOME.PATH' | translate }}" class="form-control" type="text" name="aa" required [(ngModel)]="dossier"
-                 #modif="ngModel">
-        </mat-form-field>
-        <button type="submit" class="d-block w-100 ml-0" mdbBtn
-                color="info" [disabled]="!doss.form.valid" (click)="mamorona(doss)" mdbWavesEffect>
-          {{ 'PAGES.HOME.CREATE' | translate }}
-        </button>
-      </form>
-      <h2 class="text-center"><strong>{{ 'PAGES.HOME.FILE' | translate }}</strong></h2>
-        <form #filed="ngForm">
-          <mat-form-field class="w-100">
-            <input matInput placeholder="{{ 'PAGES.HOME.PATH' | translate }}" class="form-control" type="text" name="aa" required [(ngModel)]="file"
-                   #modif="ngModel">
-          </mat-form-field>
-          <button type="submit" class="d-block w-100 ml-0" mdbBtn
-                  color="info" [disabled]="!filed.form.valid" (click)="create(filed)" mdbWavesEffect>
-            {{ 'PAGES.HOME.CREATE' | translate }}
-          </button>
-        </form>
-      <h2 class="text-center"><strong>{{ 'PAGES.HOME.RMDIR' | translate }}</strong></h2>
-      <form #remove="ngForm">
-        <mat-form-field class="w-100">
-          <input matInput placeholder="{{ 'PAGES.HOME.PATH' | translate }}" class="form-control" type="text" name="aa" required [(ngModel)]="removeFile"
-                 #modif="ngModel">
-        </mat-form-field>
-        <button type="submit" class="d-block w-100 ml-0" mdbBtn
-                color="info" [disabled]="!remove.form.valid" (click)="fafao(remove)" mdbWavesEffect>
-          {{ 'PAGES.HOME.REMOVE' | translate }}
-        </button>
-      </form>
+    <div class="row">
+        <div class="col-md-6">
+            <h2 class="text-center"><strong>{{ 'PAGES.HOME.REPOSITORY' | translate }}</strong></h2>
+            <form #doss="ngForm">
+                <mat-form-field class="w-100">
+                    <input matInput placeholder="{{ 'PAGES.HOME.PATH' | translate }}" class="form-control" type="text"
+                           name="aa" required [(ngModel)]="dossier"
+                           #modif="ngModel">
+                </mat-form-field>
+                <button type="submit" class="d-block w-100 ml-0" mdbBtn
+                        color="info" [disabled]="!doss.form.valid" (click)="mamorona(doss)" mdbWavesEffect>
+                    {{ 'PAGES.HOME.CREATE' | translate }}
+                </button>
+            </form>
+            <h2 class="text-center"><strong>{{ 'PAGES.HOME.FILE' | translate }}</strong></h2>
+            <form #filed="ngForm">
+                <mat-form-field class="w-100">
+                    <input matInput placeholder="{{ 'PAGES.HOME.PATH' | translate }}" class="form-control" type="text"
+                           name="aa" required [(ngModel)]="file"
+                           #modif="ngModel">
+                </mat-form-field>
+                <button type="submit" class="d-block w-100 ml-0" mdbBtn
+                        color="info" [disabled]="!filed.form.valid" (click)="create(filed)" mdbWavesEffect>
+                    {{ 'PAGES.HOME.CREATE' | translate }}
+                </button>
+            </form>
+            <h2 class="text-center"><strong>{{ 'PAGES.HOME.RMDIR' | translate }}</strong></h2>
+            <form #remove="ngForm">
+                <mat-form-field class="w-100">
+                    <input matInput placeholder="{{ 'PAGES.HOME.PATH' | translate }}" class="form-control" type="text"
+                           name="aa" required [(ngModel)]="removeFile"
+                           #modif="ngModel">
+                </mat-form-field>
+                <button type="submit" class="d-block w-100 ml-0" mdbBtn
+                        color="info" [disabled]="!remove.form.valid" (click)="fafao(remove)" mdbWavesEffect>
+                    {{ 'PAGES.HOME.REMOVE' | translate }}
+                </button>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <h2 class="text-center"><strong>{{ 'PAGES.HOME.START_APP' | translate }}</strong></h2>
+            <div class="text-center">
+                <a (click)="startApache()" mdbBtn color="info">{{'PAGES.APPS.APACHE' | translate }}</a>
+                <a (click)="startChrome()" mdbBtn color="secondary">{{'PAGES.APPS.CHROME' | translate }}</a>
+                <a (click)="startStorm()" mdbBtn color="success">{{'PAGES.APPS.STORM' | translate }}</a>
+                <a (click)="startAll()" mdbBtn color="info">{{'PAGES.APPS.ALL' | translate }}</a>
+            </div>
+            <h2 class="text-center"><strong>{{ 'PAGES.COMMAND.SYSTEM' | translate }}</strong></h2>
+            <div class="text-center">
+                <a (click)="systReboot()" mdbBtn color="warning">{{ 'PAGES.COMMAND.REBOOT' | translate }}</a>
+                <a (click)="systShutdown()" mdbBtn color="danger">{{ 'PAGES.COMMAND.SHUTDOWN' | translate }}</a>
+            </div>
+            <h2 class="text-center"><strong>{{ 'PAGES.APPS.NEW_APPLICATION' | translate }}</strong></h2>
+            <div class="text-center">
+                <a (click)="frame.show();createApp($event)" name="0" mdbBtn
+                   color="success">{{ 'PAGES.HOME.ANGULAR' | translate }}</a>
+                <a (click)="frame.show();createApp($event)" name="1" mdbBtn
+                   color="success">{{ 'PAGES.HOME.REACT' | translate }}</a>
+                <a (click)="frame.show();createApp($event)" name="2" mdbBtn
+                   color="success">{{ 'PAGES.HOME.E_A' | translate }}</a>
+            </div>
+        </div>
     </div>
-    <div class="col-md-6">
-      <h2 class="text-center"><strong>{{ 'PAGES.HOME.START_APP' | translate }}</strong></h2>
-      <div class="text-center">
-        <a (click)="startApache()" mdbBtn color="info">{{'PAGES.APPS.APACHE' | translate }}</a>
-        <a (click)="startChrome()" mdbBtn color="secondary">{{'PAGES.APPS.CHROME' | translate }}</a>
-        <a (click)="startStorm()"  mdbBtn color="success">{{'PAGES.APPS.STORM' | translate }}</a>
-        <a (click)="startAll()"  mdbBtn color="info">{{'PAGES.APPS.ALL' | translate }}</a>
-      </div>
-      <h2 class="text-center"><strong>{{ 'PAGES.COMMAND.SYSTEM' | translate }}</strong></h2>
-      <div class="text-center">
-        <a (click)="systReboot()" mdbBtn color="warning">{{ 'PAGES.COMMAND.REBOOT' | translate }}</a>
-        <a (click)="systShutdown()" mdbBtn color="danger">{{ 'PAGES.COMMAND.SHUTDOWN' | translate }}</a>
-      </div>
-    </div>
-  </div>
-
 </div>
 
+<!--modal for apps-->
+<div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold" *ngIf="react">Create React app</h4>
+                <h4 class="modal-title w-100 font-weight-bold" *ngIf="angular">Create Angular app</h4>
+                <h4 class="modal-title w-100 font-weight-bold" *ngIf="electron">Create Electron app</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body mx-3">
+                <form #filed="ngForm" class="col-md-12 mt-5">
+                    <mat-form-field class="col-md-12">
+                        <input matInput placeholder="Path for application" class="form-control" type="text"
+                               name="pathapp" required [(ngModel)]="path"
+                               #pathapp="ngModel">
+                    </mat-form-field>
+                    <mat-form-field class="col-md-12">
+                        <input matInput placeholder="Application name" class="form-control" type="text" name="appname"
+                               required [(ngModel)]="app_name"
+                               #appname="ngModel">
+                    </mat-form-field>
+                </form>
+            </div>
+            <div class="modal-footer d-flex justify-content-center" style="width: 100%;display: block">
+                <button mdbBtn color="default" [disabled]="!filed.form.valid" (click)="createApps(filed)"
+                        class="waves-light d-block w-100" mdbWavesEffect>CREATE
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

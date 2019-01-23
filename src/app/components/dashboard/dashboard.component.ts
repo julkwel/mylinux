@@ -5,93 +5,155 @@ import * as exec from 'shelljs.exec'
 import {NgForm} from "@angular/forms";
 import {Commande} from "../../utils/Commande";
 import {LocalStorageService} from "../../providers/localStorage.service";
+import {teste} from "../../../../../../self/tpnote/src";
+import {test} from "shelljs";
+import {spawn} from "child_process";
+import {root} from "rxjs/internal-compatibility";
+import * as child_process from "child_process";
+import {AppGit} from "../../utils/AppGit";
+import {log} from "util";
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+    selector: 'app-dashboard',
+    templateUrl: './dashboard.component.html',
+    styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
 
-  file:any;
-  removeFile:any;
-  dossier:any;
-  name:any;
+    file: any;
+    removeFile: any;
+    dossier: any;
+    name: any;
+    path: any;
+    option: any;
+    angular: boolean;
+    react: boolean;
+    electron: boolean;
+    my_apps: any;
+    app_name: any;
 
-  constructor(private router:Router,
-              private localStorage:LocalStorageService) { }
+    constructor(private router: Router,
+                private localStorage: LocalStorageService) {
+    }
 
-  ngOnInit() {
-    document.body.style.overflow = "visible";
-    this.name = this.localStorage.getLocalstorage('nom');
-  }
+    ngOnInit() {
+        document.body.style.overflow = "visible";
+        this.name = this.localStorage.getLocalstorage('nom');
+    }
 
-  home() {
-    this.router.navigate(['']);
-  }
+    home() {
+        this.router.navigate(['']);
+    }
 
-  logout(){
-    exec('logout');
-  }
+    createApp(event) {
+        var target = event.target || event.srcElement || event.currentTarget;
+        var nameApp = target.attributes.name.value;
 
-  /**
-   * Création fichiers
-   * @param form
-   */
-  create(form:NgForm){
-    shell.touch(this.file);
-    form.reset();
-  }
+        if (nameApp == 0) {
+            this.angular = true;
+            this.react = false;
+            this.electron = false;
+        } else if (nameApp == 1) {
+            this.react = true;
+            this.angular = false;
+            this.electron = false;
+        } else {
+            this.electron = true;
+            this.react = false;
+            this.angular = false;
+        }
+        this.my_apps = nameApp;
+    }
 
-  /**
-   * Suppressio fichier
-   * @param form
-   */
-  fafao(form:NgForm){
-    exec('rm -rf ' + this.removeFile, {silent: true});
-    form.reset();
-  }
+    logout() {
+        exec('logout');
+    }
 
-  /**
-   * Mamorona dossier
-   */
-  mamorona(form:NgForm){
-    // exec('mkdir' + this.dossier);
-    shell.mkdir('-p',this.dossier);
-    form.reset();
-  }
+    /**
+     * Création fichiers
+     * @param form
+     */
+    create(form: NgForm) {
+        shell.touch(this.file);
+        form.reset();
+    }
 
-  startApache(){
-    exec(Commande.apache, {silent: true});
-  }
+    /**
+     * Suppression fichier
+     * @param form
+     */
+    fafao(form: NgForm) {
+        exec('rm -rf ' + this.removeFile, {silent: true});
+        form.reset();
+    }
 
-  startStorm(){
-    exec(Commande.phpstorm, {silent: true});
-  }
+    /**
+     * Create application
+     * @param form
+     */
+    createApps(form: NgForm) {
+        if (test('-d', this.path) && test('-e', this.path)) {
+            shell.cd(this.path);
+            if (!shell.which('git')) {
+                window.alert('Sorry, this script requires git');
+                shell.exit(1);
+            } else {
+                if (this.my_apps == 1) {
+                    var url_app = AppGit.react
+                } else if (this.my_apps == 2) {
+                    var url_app = AppGit.electron
+                } else {
+                    var url_app = AppGit.angular
+                }
+                console.log(url_app);
+                const {stdout, stderr, code} = exec(url_app + ' ' + this.app_name, {async: true});
+                let mylinux_retour = {stdout, stderr, code};
+                if (mylinux_retour.code == 0) {
+                    shell.cd(this.app_name);
+                    exec('npm install', {silent: true, async: true});
+                    window.alert("Your app is ready");
+                } else {
+                    window.alert("An error occured, would your system have a git or angular-cli? ")
+                }
+            }
+            form.reset();
+        } else {
+            window.alert("Path not exist or" + this.path + "is not a directory");
+        }
+        form.reset();
+    }
 
-  startChrome(){
-    exec(Commande.chrome, {silent: true});
-    // const  { stdout, stderr, code } = exec(Commande.chrome, {silent: true});
-    // let jul_commad_return = { stdout, stderr, code };
-    // if ( jul_commad_return.code === 0) {
-    //   window.alert("Mazotoa");
-    // }else {
-    //   window.alert("an error occured");
-    // }
-    // return jul_commad_return;
-  }
+    /**
+     * Mamorona dossier
+     */
+    mamorona(form: NgForm) {
+        shell.mkdir('-p', this.dossier);
+        form.reset();
+    }
 
-  systReboot(){
-    exec(Commande.mamelona_indray, {silent:true});
-  }
+    startApache() {
+        exec(Commande.apache, {silent: true});
+    }
 
-  systShutdown(){
-    exec(Commande.mamono,{silent:true});
-  }
+    startStorm() {
+        exec(Commande.phpstorm, {silent: true});
+    }
 
-  startAll(){
-    this.startChrome();
-    this.startApache();
-    this.startStorm();
-  }
+    startChrome() {
+        exec(Commande.chrome, {silent: true});
+    }
+
+    systReboot() {
+        exec(Commande.mamelona_indray, {silent: true});
+    }
+
+    systShutdown() {
+        exec(Commande.mamono, {silent: true});
+    }
+
+    startAll() {
+        this.startChrome();
+        this.startApache();
+        this.startStorm();
+    }
 }
