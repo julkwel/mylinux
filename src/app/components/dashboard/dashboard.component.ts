@@ -106,7 +106,7 @@ export class DashboardComponent implements OnInit {
     }
 
     deleteDir(el){
-        console.log(el);
+        exec('rm -rf '+ this.listFile+'/'+el, {silent: true});
     }
 
     /**
