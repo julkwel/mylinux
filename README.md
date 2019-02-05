@@ -51,6 +51,15 @@ The application code is managed by `main.ts`. In this sample, the app runs with 
 The Angular component contains an example of Electron and NodeJS native lib import.
 You can disable "Developer Tools" by commenting `win.webContents.openDevTools();` in `main.ts`.
 
+## TODO
+
+|Command|Description|
+|--|--|
+|regex| regex to find file , remove , create for example `~/Documents` => `Documents` ... |
+|monitoring| add monitoring sistem and sent alert |
+|login| login as linux user |
+|ftp and ssh | upload and sent file via ftp or ssh  |
+
 ## Included Commands
 
 |Command|Description|
