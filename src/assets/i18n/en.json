@@ -2,10 +2,14 @@
   "PAGES": {
     "HOME": {
       "TITLE": "WELCOME !",
+      "DEL": "DELETE",
       "USER": "WELCOME ",
-      "REPOSITORY": "Create repository",
+      "REPOSITORY": "Create directory",
       "FILE": "Create file",
+      "LIST": "Enter path",
+      "LISTDIR": "List directory",
       "CREATE": "Create",
+      "FIND": "Find",
       "REMOVE": "Remove",
       "RMDIR": "Remove directory",
       "BACK": "HOME",

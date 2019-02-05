@@ -5,7 +5,7 @@ import {NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { AppRoutingModule } from './app-routing.module';
 
 // NG Translate
@@ -59,6 +59,7 @@ export function getAuthServiceConfigs() {
     BrowserModule,
     FormsModule,
     SocialLoginModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
     MDBBootstrapModule.forRoot(),

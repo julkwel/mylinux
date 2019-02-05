@@ -5,13 +5,11 @@ import * as exec from 'shelljs.exec'
 import {NgForm} from "@angular/forms";
 import {Commande} from "../../utils/Commande";
 import {LocalStorageService} from "../../providers/localStorage.service";
-import {teste} from "../../../../../../self/tpnote/src";
 import {test} from "shelljs";
-import {spawn} from "child_process";
-import {root} from "rxjs/internal-compatibility";
-import * as child_process from "child_process";
 import {AppGit} from "../../utils/AppGit";
-import {log} from "util";
+import * as root from 'sudo-prompt'
+import {element} from "protractor";
+import {el} from "@angular/platform-browser/testing/src/browser_util";
 
 @Component({
     selector: 'app-dashboard',
@@ -31,6 +29,9 @@ export class DashboardComponent implements OnInit {
     electron: boolean;
     my_apps: any;
     app_name: any;
+    listFile : any;
+    listdir = [];
+    headElements = ['directory','action'];
 
     constructor(private router: Router,
                 private localStorage: LocalStorageService) {
@@ -69,6 +70,19 @@ export class DashboardComponent implements OnInit {
         exec('logout');
     }
 
+
+    /**
+     * execution sudo commande
+     */
+    testeRoot(){
+        var  options = {
+            name: 'jul',
+        };
+        root.exec("reboot",options,function (error, stdout,stderr) {
+          if (error)   throw error;
+          console.log('stdout:' + stdout);
+        })
+    }
     /**
      * Création fichiers
      * @param form
@@ -85,6 +99,14 @@ export class DashboardComponent implements OnInit {
     fafao(form: NgForm) {
         exec('rm -rf ' + this.removeFile, {silent: true});
         form.reset();
+    }
+
+    searchFile(){
+       this.listdir = shell.ls(this.listFile);
+    }
+
+    deleteDir(el){
+        console.log(el);
     }
 
     /**

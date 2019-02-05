@@ -11,7 +11,7 @@
 
 <div class="container-fluid mt-5">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-3">
             <h2 class="text-center"><strong>{{ 'PAGES.HOME.REPOSITORY' | translate }}</strong></h2>
             <form #doss="ngForm">
                 <mat-form-field class="w-100">
@@ -48,8 +48,47 @@
                     {{ 'PAGES.HOME.REMOVE' | translate }}
                 </button>
             </form>
+            <h2 class="text-center"><strong>{{ 'PAGES.HOME.LISTDIR' | translate }}</strong></h2>
+            <form #filelist="ngForm">
+                <mat-form-field class="w-100">
+                    <input matInput placeholder="{{ 'PAGES.HOME.LIST' | translate }}" class="form-control" type="text"
+                           name="list" required [(ngModel)]="listFile"
+                           #fl="ngModel">
+                </mat-form-field>
+                <button type="submit" class="d-block w-100 ml-0" mdbBtn
+                        color="info" [disabled]="!filelist.form.valid" (click)="searchFile(filelist);test.show()" mdbWavesEffect>
+                    {{ 'PAGES.HOME.FIND' | translate }}
+                </button>
+            </form>
+            <div mdbModal #test="mdbModal" style="overflow-y: auto" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <table mdbTable>
+                            <thead>
+                                <tr>
+                                    <th *ngFor="let head of headElements" scope="col">{{head}} </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <tr *ngFor="let el of listdir">
+                                <th scope="row">{{el | slice:0:10}}</th>
+                                <th scope="row">
+                                    <button type="submit" class="d-block w-100 ml-0" mdbBtn
+                                            color="danger" (click)="deleteDir(el);" mdbWavesEffect>
+                                        {{ 'PAGES.HOME.DEL' | translate }}
+                                    </button>
+                                </th>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-3"></div>
+        <div class="col-md-3"></div>
+
+        <div class="col-md-3">
             <h2 class="text-center"><strong>{{ 'PAGES.HOME.START_APP' | translate }}</strong></h2>
             <div class="text-center">
                 <a (click)="startApache()" mdbBtn color="info">{{'PAGES.APPS.APACHE' | translate }}</a>
@@ -70,6 +109,8 @@
                    color="success">{{ 'PAGES.HOME.REACT' | translate }}</a>
                 <a (click)="frame.show();createApp($event)" name="2" mdbBtn
                    color="success">{{ 'PAGES.HOME.E_A' | translate }}</a>
+                <a (click)="testeRoot()" mdbBtn
+                   color="success">root</a>
             </div>
         </div>
     </div>
